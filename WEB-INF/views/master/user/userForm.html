@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont" sec:authorize="hasRole('ADMIN')">
+<form action="#" th:action="@{/user/userForm}" th:object="${mstUser}" method="post" class="ajaxSingle" id="ajaxSg">
+    <div id="contentSingle">
+    <div>
+        <label>Username</label>
+        <input type="text" maxlength="100" th:field="*{username}"
+               th:class="${#fields.hasErrors('username')}?'fieldError' "/>
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="password" maxlength="100" th:field="*{password}"
+               th:class="${#fields.hasErrors('password')}?'fieldError' "/>
+    </div>
+    <div>
+        <label>Role</label>
+    <span class="opt" th:each="mstRole: ${roleList}">
+    <input type="checkbox" th:field="*{authorities}" th:value="${mstRole.authority}" th:text="${mstRole.authority}"/>
+    </span>
+    </div>
+    <div><label> Enabled</label>
+        <span><input type="checkbox" th:field="*{enabled}"/></span>
+    </div>
+    </div>
+    <div>
+        <input type="button" onclick="doAjaxPost(this , '#tblSingle' );" value="save"/>
+
+        <input type="button"
+               onclick="doAjaxLoad( '.ajaxSingle' ,  'clear' , '#contentSingle' );"
+               value="new"/>
+
+    </div>
+</form>
+<div id="tblSingle">
+    <table>
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th> edit | delete
+
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="usr:${listUser}">
+            <td th:text="${usr.username}"/>
+            <td th:each="rol: ${usr.authorities}">
+                <span th:text="${rol.authority}"/>
+            </td>
+
+            <td><a href="#openModal"
+                   th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + ${usr.id} + '\', \'' + '#contentSingle' + '\' );'"
+                    >edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

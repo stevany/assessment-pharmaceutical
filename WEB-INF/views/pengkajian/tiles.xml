@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "/tiles-config_2.1.dtd">
+<tiles-definitions>
+    <definition name="pengkajian/*" extends="template-empty">
+        <put-attribute name="body" value="pengkajian/{1} :: cont" type="thymeleaf"/>
+    </definition>
+
+</tiles-definitions>

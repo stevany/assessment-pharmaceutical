@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.1.v201309091055 Build &lt;4.3.1.v20130918-1142></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="tgl1" id="9">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">dateTime</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2013-01-01</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="tgl2" id="10">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">dateTime</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2014-01-05</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="asuhanFM" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://localhost:5432/dbasuhanFM</property>
+            <property name="odaUser">postgres</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">MTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="intervensi" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">respon</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">respon</text-property>
+                    <text-property name="heading">respon</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">intervensi</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">intervensi</text-property>
+                    <text-property name="heading">intervensi</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">int</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">int</text-property>
+                    <text-property name="heading">int</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">penerima</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">penerima</text-property>
+                    <text-property name="heading">penerima</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">pnr</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">pnr</text-property>
+                    <text-property name="heading">pnr</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">tgl1</property>
+                    <property name="paramName">tgl1</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">dateTime</property>
+                    <property name="nativeDataType">93</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">tgl2</property>
+                    <property name="paramName">tgl2</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">dateTime</property>
+                    <property name="nativeDataType">93</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">respon</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">intervensi</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">int</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">penerima</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">pnr</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">asuhanFM</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">respon</property>
+                    <property name="nativeName">respon</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">intervensi</property>
+                    <property name="nativeName">intervensi</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">int</property>
+                    <property name="nativeName">int</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">penerima</property>
+                    <property name="nativeName">penerima</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">pnr</property>
+                    <property name="nativeName">pnr</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select d.id,  d.respon,d.intervensi, i.keterangan as int, penerima, p.keterangan as pnr
+from fm_peng_dtlklinis d 
+left join fm_mst_intervensi i on i.id=d.intervensi
+left join fm_mst_penerima p on p.id=d.penerima
+where d.tglupdate between ? and ?
+order by intervensi]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>respon</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>respon</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>respon</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>intervensi</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>intervensi</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>intervensi</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>int</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>int</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>int</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>penerima</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>penerima</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>penerima</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>pnr</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>200</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>pnr</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>pnr</design:label>
+            <design:formattingHints>
+              <design:displaySize>200</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="11">
+            <property name="width">8in</property>
+            <property name="dataSet">intervensi</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">id</property>
+                    <text-property name="displayName">id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">respon</property>
+                    <text-property name="displayName">respon</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["respon"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">intervensi</property>
+                    <text-property name="displayName">intervensi</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["intervensi"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">int</property>
+                    <text-property name="displayName">int</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["int"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">penerima</property>
+                    <text-property name="displayName">penerima</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["penerima"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">pnr</property>
+                    <text-property name="displayName">pnr</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["pnr"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">toty</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">BirtComp.equalTo(dataSetRow["respon"],1)</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">tott</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">BirtComp.equalTo(dataSetRow["respon"],0)</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">totdr</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">BirtComp.equalTo(BirtStr.toLower(dataSetRow["pnr"]),"dokter")</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">totpr</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">BirtComp.equalTo(BirtStr.toLower(dataSetRow["pnr"]),"perawat")</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">totps</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <expression name="filterExpr" type="javascript">BirtComp.equalTo(BirtStr.toLower(dataSetRow["pnr"]),"pasien")</expression>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">no</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">RUNNINGCOUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["intervensi"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">tot</property>
+                    <property name="dataType">integer</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>inv</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["id"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="18">
+                <property name="width">8in</property>
+            </column>
+            <header>
+                <row id="12">
+                    <property name="height">0.08333333333333333in</property>
+                    <cell id="13">
+                        <grid id="110">
+                            <property name="height">0.08333333333333333in</property>
+                            <property name="width">7.90625in</property>
+                            <column id="137">
+                                <property name="width">3.59375in</property>
+                            </column>
+                            <column id="112">
+                                <property name="width">1.375in</property>
+                            </column>
+                            <column id="113">
+                                <property name="width">2.2083333333333335in</property>
+                            </column>
+                            <column id="222">
+                                <property name="width">0.7291666666666666in</property>
+                            </column>
+                            <row id="118">
+                                <property name="height">0.08333333333333333in</property>
+                                <cell id="136">
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <grid id="284">
+                                        <property name="height">0.3125in</property>
+                                        <column id="285"/>
+                                        <row id="286">
+                                            <property name="height">0.3125in</property>
+                                            <cell id="287">
+                                                <property name="backgroundColor">#E3CE9D</property>
+                                                <label id="133">
+                                                    <text-property name="text">Nama Intervensi</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="121">
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <label id="141">
+                                        <property name="backgroundColor">#E3CE9D</property>
+                                        <text-property name="text">Respon</text-property>
+                                    </label>
+                                    <grid id="270">
+                                        <property name="height">0.020833333333333332in</property>
+                                        <column id="271"/>
+                                        <column id="272"/>
+                                        <row id="273">
+                                            <property name="height">0.010416666666666666in</property>
+                                            <cell id="274">
+                                                <label id="214">
+                                                    <property name="backgroundColor">#E3CE9D</property>
+                                                    <text-property name="text">Ya</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="275">
+                                                <label id="215">
+                                                    <property name="backgroundColor">#E3CE9D</property>
+                                                    <text-property name="text">Tidak</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="123">
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <label id="151">
+                                        <property name="backgroundColor">#E3CE9D</property>
+                                        <text-property name="text">Penerima</text-property>
+                                    </label>
+                                    <grid id="276">
+                                        <property name="height">0.010416666666666666in</property>
+                                        <column id="277"/>
+                                        <column id="278">
+                                            <property name="backgroundColor">#E3CE9D</property>
+                                        </column>
+                                        <column id="279">
+                                            <property name="backgroundColor">#E3CE9D</property>
+                                        </column>
+                                        <row id="280">
+                                            <property name="height">0.010416666666666666in</property>
+                                            <cell id="281">
+                                                <label id="217">
+                                                    <property name="backgroundColor">#E3CE9D</property>
+                                                    <text-property name="text">Dokter</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="282">
+                                                <property name="backgroundColor">#FFFFFF</property>
+                                                <label id="218">
+                                                    <property name="backgroundColor">#E3CE9D</property>
+                                                    <text-property name="text">Perawat</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="283">
+                                                <property name="backgroundColor">#FFFFFF</property>
+                                                <label id="219">
+                                                    <property name="backgroundColor">#E3CE9D</property>
+                                                    <text-property name="text">Pasien</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                                <cell id="221">
+                                    <property name="backgroundColor">#FFFFFF</property>
+                                    <grid id="288">
+                                        <property name="height">0.3125in</property>
+                                        <column id="289"/>
+                                        <row id="290">
+                                            <property name="height">0.3125in</property>
+                                            <cell id="291">
+                                                <property name="backgroundColor">#E3CE9D</property>
+                                                <label id="246">
+                                                    <text-property name="text">Total</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+            </header>
+            <group id="19">
+                <property name="groupName">inv</property>
+                <expression name="keyExpr" type="javascript">row["intervensi"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["intervensi"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <header>
+                    <row id="20">
+                        <property name="height">0.09375in</property>
+                        <cell id="21">
+                            <grid id="76">
+                                <property name="height">0.09375in</property>
+                                <property name="width">7.8125in</property>
+                                <column id="139">
+                                    <property name="width">3.59375in</property>
+                                </column>
+                                <column id="78">
+                                    <property name="width">0.71875in</property>
+                                </column>
+                                <column id="79">
+                                    <property name="width">0.6666666666666666in</property>
+                                </column>
+                                <column id="80">
+                                    <property name="width">0.6770833333333334in</property>
+                                </column>
+                                <column id="81">
+                                    <property name="width">0.7604166666666666in</property>
+                                </column>
+                                <column id="82">
+                                    <property name="width">0.7604166666666666in</property>
+                                </column>
+                                <column id="189">
+                                    <property name="width">0.6354166666666666in</property>
+                                </column>
+                                <row id="84">
+                                    <property name="height">0.09375in</property>
+                                    <cell id="138">
+                                        <data id="47">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="resultSetColumn">int</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="86">
+                                        <data id="102">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">toty</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="87">
+                                        <data id="103">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">tott</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="88">
+                                        <data id="104">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">totdr</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="89">
+                                        <data id="105">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">totpr</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="90">
+                                        <data id="108">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">totps</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="188">
+                                        <data id="190">
+                                            <property name="backgroundColor">#F0E9C1</property>
+                                            <property name="textAlign">right</property>
+                                            <property name="resultSetColumn">tot</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </grid>
+                        </cell>
+                    </row>
+                </header>
+            </group>
+        </table>
+    </body>
+</report>

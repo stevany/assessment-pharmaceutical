@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<div th:each="rjReg, rowStat :${dataRJ}">
+    <div>
+        <label>NoRM</label>
+        <input type="text" th:value="${rjReg.norm}" readonly="true"/>
+        <span/>
+        <label>Nama Pasien</label>
+        <input type="text" th:value="${rjReg.nmPasien}" readonly="true"/>
+
+    </div>
+    <div>
+        <label>Jenis Kelamin</label>
+        <input type="text" th:value="${rjReg.seks}" readonly="true"/>
+        <span/>
+        <label>Umur</label>
+        <input type="text" th:value="${rjReg.umur}" readonly="true"/>
+    </div>
+    <div>
+        <label>Tanggal Registrasi</label>
+        <input type="text" th:value="${#dates.format(rjReg.tglRegistrasi, 'dd-MMM-yyyy')}" readonly="true"/>
+        <span/>
+        <label>Dokter</label>
+        <input type="text" th:value="${rjReg.nmDokter}" readonly="true"/>
+    </div>
+    <div>
+        <label>Pekerjaan</label>
+        <input type="text" th:value="${rjReg.pekerjaan}" readonly="true"/>
+        <span/>
+        <label>Suku</label>
+        <input type="text" th:value="${rjReg.suku}" readonly="true"/>
+    </div>
+</div>
+<div th:each="labHdrRj, rowStat:${rjLabHdr}">
+
+    <a href="#" th:href="@{'data/rj/lab/hdr/' + ${labHdrRj.nolab}}" onclick="doCek(this,  '#tblDtl');return false;" > <span th:text="${labHdrRj.nolab}" /></a>
+    <div id="tblHdr">
+        <label>NoLab : <span th:text="${labHdrRj.nolab}"/></label>
+        <span/>
+        <label>Tanggal Registrasi: <span th:text="${labHdrRj.tgltrans}"/></label>
+        <span/>
+        <label>Dokter : <span th:text="${labHdrRj.namaDokter}"/></label>
+        <span/>
+        <label>Catatan : <span th:text="${labHdrRj.catatan}"/></label>
+
+        <div id="tblDtl" class="kosong">
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

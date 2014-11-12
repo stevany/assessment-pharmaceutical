@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<table>
+    <thead>
+    <th>No</th>
+    <th>Group</th>
+    <th>Kelompok</th>
+    <th>Test</th>
+    <th>Fraction</th>
+    <th>Out Range</th>
+    <th>In Range</th>
+    <th>Range</th>
+    <th>Unit/Satuan</th>
+    <th>Nilai Std</th>
+    </thead>
+    <tbody>
+    <tr th:each="labDtlRj, row : ${rjLabDtl}">
+        <td th:text="${row.count}"/>
+        <td th:text="${labDtlRj.nmGroup}"/>
+        <td th:text="${labDtlRj.nmKel}"/>
+        <td th:text="${labDtlRj.nmTest}"/>
+        <td th:text="${labDtlRj.nmFraction}"/>
+        <td th:text="${labDtlRj.outRange}"/>
+        <td th:text="${labDtlRj.inRange}"/>
+        <td th:text="${labDtlRj.btsMin} + '-' + ${labDtlRj.btsMax}"/>
+        <td th:text="${labDtlRj.nmUnit}"/>
+        <td th:text="${labDtlRj.nilaiStd}"/>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://wwww.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title></title>
+</head>
+<body tiles:fragment="cont">
+<div id="listDrp">
+    <a href="#"  th:onclick="'doAjaxList(\'' + '#listDrp' + '\', \'' + '/asuhanFM/drp/drpForm/'+ '\');'" >new</a>
+    <table>
+        <thead>
+            <th>No</th>
+            <th>Assessment</th>
+            <th>Keterangan</th>
+        </thead>
+        <tbody>
+            <tr th:each="mstDrpHdr, rowStat :${listDrpHdr}">
+                <td th:text="${rowStat.count}"/>
+                <td th:text="${mstDrpHdr.assessment.ketAssessment}"/>
+                <td th:text="${mstDrpHdr.ketDrpHdr}"/>
+                <td><a href="#" th:href="@{'/drp/drpForm/' +   ${mstDrpHdr.idDrpHdr}}" onclick="tabSwitch(this, '#details');return false;"  id="lst">edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

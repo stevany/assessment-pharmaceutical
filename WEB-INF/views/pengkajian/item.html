@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://wwww.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title></title>
+</head>
+<body tiles:fragment="cont">
+<div id="tblSingle" class="pengkajian">
+    <table id="tblPeng">
+
+
+        <!--<tr th:each="assessment, rowStat:${listAssessment}" th:onclick="'doReplace(\'' + '#tblSingle' + '\' , \'' + ${fmItemResep.kdBarang} + '\' , \'' + ${fmItemResep.nmDesc1} + '\');return false;'">-->
+        <!--<td th:each="assessment, rowStat:${listAssessment}">-->
+        <!--<span th:text="${assessment.ketAssessment}">-->
+        <!--<div th:each="drpHdr, dtlStat:${listDrpHdr}">-->
+        <!--<span th:text="${drpHdr.ketDrpHdr}">-->
+        <!--<div th:each="drpDtl, hdrStat:${listDrpDtl}">-->
+        <!--<span th:text="${dprDtl.ketDrpDtl"/>-->
+        <!--</div>-->
+        <!--</span>        -->
+        <!--</div>-->
+        <!--</span>-->
+        <!--</td>-->
+        <tr>
+            <td th:each="assessment, asStat:${listAssessment}">
+                    <span th:text="${asStat.count}"/>
+                    <span th:text="${assessment.ketAssessment}"/>
+
+                    <p/>
+
+                    <div th:each="drpHdr, hdStat:${assessment.drpHdr}">
+                        <fieldset>
+                            <legend th:text="${drpHdr.ketDrpHdr}"/>
+                            <p/>
+
+                            <div th:each="drpDtl, dtStat:${drpHdr.drpDtl}">
+                                <input type="radio" th:value="${drpDtl.idDrpDtl}" th:text="${drpDtl.ketDrpDtl}" th:onclick="'doReplace(\'' + '#tblSingle' + '\' , \'' + ${drpDtl.idDrpDtl} + '\' , \'' + ${drpDtl.ketDrpDtl} + '\');'"/>
+                            </div>
+                        </fieldset>
+                    </div>
+
+            </td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

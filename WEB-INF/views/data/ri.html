@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<div th:each="riReg, rowStat :${dataRI}">
+    <div>
+        <label>NoRM</label>
+        <input type="text" th:value="${riReg.norm}" readonly="true"/>
+        <span/>
+        <label>Nama Pasien</label>
+        <input type="text" th:value="${riReg.nmPasien}" readonly="true"/>
+    </div>
+    <div>
+        <label>Jenis Kelamin</label>
+        <input type="text" th:value="${riReg.seks}" readonly="true"/>
+        <span/>
+        <label>Umur</label>
+        <input type="text" th:value="${riReg.umur}" readonly="true"/>
+    </div>
+    <div>
+        <label>Tanggal Masuk</label>
+        <input type="text" th:value="${#dates.format(riReg.tglMasuk, 'dd-MMM-yyyy')}" readonly="true"/>
+        <span/>
+        <label>Tanggal Keluar</label>
+        <input type="text" th:value="${#dates.format(riReg.tglKeluar, 'dd-MMM-yyyy')}" readonly="true"/>
+
+    </div>
+    <div>
+        <label>Dokter</label>
+        <input type="text" th:value="${riReg.nmDokter}" readonly="true"/>
+        <span/>
+        <label>NoTT</label>
+        <input type="text" th:value="${riReg.noTT}" readonly="true"/>
+    </div>
+    <div>
+        <label>Ruang</label>
+        <input type="text" th:value="${riReg.nmRuang}" readonly="true"/>
+        <span/>
+        <label>Kelas</label>
+        <input type="text" th:value="${riReg.nmKelas}" readonly="true"/>
+
+    </div>
+    <div>
+        <label>Pekerjaan</label>
+        <input type="text" th:value="${riReg.pekerjaan}" readonly="true"/>
+        <span/>
+        <label>Suku</label>
+        <input type="text" th:value="${riReg.suku}" readonly="true"/>
+
+    </div>
+</div>
+<div th:each="labHdrRi, rowStat:${riLabHdr}">
+
+    <a href="#" th:href="@{'data/ri/lab/hdr/' + ${labHdrRi.nolab}}" onclick="doCek(this, '#tblDtl');return false;"  ><span th:text="${labHdrRi.nolab}" /></a>
+    <div id="tblHdr">
+        <label>NoLab : <span th:text="${labHdrRi.nolab}"/></label>
+        <span/>
+        <label>Tanggal Registrasi: <span th:text="${labHdrRi.nolab}"/></label>
+        <span/>
+        <label>Dokter : <span th:text="${labHdrRi.nolab}"/></label>
+        <span/>
+        <label>Catatan : <span th:text="${labHdrRi.catatan}"/></label>
+        <div id="tblDtl" class="kosong">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

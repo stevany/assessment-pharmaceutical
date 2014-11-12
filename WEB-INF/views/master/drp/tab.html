@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title></title>
+</head>
+<body tiles:fragment="cont">
+<div class="tabs">
+
+        <a href="javascript:void(0);" th:href="@{'/drp/drpList'}"  onclick="tabSwitch(this,'');return false;"  id="list"><span>List</span></a>
+        <a href="javascript:void(0);" th:href="@{'/drp/drpForm'}" onclick="tabSwitch(this,'');return false;" id="details"><span>Details</span></a>
+    <!--<a href="javascript:void(0);" onclick="tabSwitch(this)" class="gl_off" title="Assists">Assts</a>-->
+</div>
+    <div class="tabsContent">
+    <br />
+
+    </div>
+
+    <!--<div class="tabsContent" title="Rebounding_Data" id="form">-->
+        <!--<br />-->
+
+    <!--</div>-->
+
+
+
+</body>
+</html>

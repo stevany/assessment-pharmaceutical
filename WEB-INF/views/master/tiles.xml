@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "/tiles-config_2.1.dtd">
+
+<tiles-definitions>
+    <definition name="/*" template="/{1}" templateType="thymeleaf"/>
+    <definition name="master/*" extends="template-main">
+        <put-attribute name="body" value="master/{1} :: content" type="thymeleaf"/>
+    </definition>
+    <definition name="master/assessment/*" extends="template-empty">
+        <put-attribute name="body" value="master/assessment/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/drp/*" extends="template-empty">
+        <put-attribute name="body" value="master/drp/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/hasil/*" extends="template-empty">
+        <put-attribute name="body" value="master/hasil/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/intervensi/*" extends="template-empty">
+        <put-attribute name="body" value="master/intervensi/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/jnskonseling/*" extends="template-empty">
+        <put-attribute name="body" value="master/jnskonseling/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/materi/*" extends="template-empty">
+        <put-attribute name="body" value="master/materi/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/penerima/*" extends="template-empty">
+        <put-attribute name="body" value="master/penerima/{1} :: cont" type="thymeleaf"/>
+    </definition>
+    <definition name="master/user/*" extends="template-empty">
+        <put-attribute name="body" value="master/user/{1} :: cont" type="thymeleaf"/>
+    </definition>
+</tiles-definitions>

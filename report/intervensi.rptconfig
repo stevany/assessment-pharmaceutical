@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <list-property name="configVars">
+        <structure>
+            <property name="name">__isdisplay__tgl1_9_0</property>
+            <property name="value">Jan 1, 2013, 12:00 AM</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__tgl2_10_1</property>
+            <property name="value">Jan 5, 2014, 12:00 AM</property>
+        </structure>
+        <structure>
+            <property name="name">tgl2_10_2</property>
+            <property name="value">2014-01-05 00:00:00.000</property>
+        </structure>
+        <structure>
+            <property name="name">tgl2_10_type_</property>
+            <property name="value">dateTime</property>
+        </structure>
+        <structure>
+            <property name="name">tgl1_9_3</property>
+            <property name="value">2013-01-01 00:00:00.000</property>
+        </structure>
+        <structure>
+            <property name="name">tgl1_9_type_</property>
+            <property name="value">dateTime</property>
+        </structure>
+    </list-property>
+</report>

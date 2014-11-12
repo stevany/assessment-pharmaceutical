@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title></title>
+</head>
+<body tiles:fragment="cont">
+<a href="#openModal"
+   th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + 'clear' + '\', \'' + '#contentSingle' + '\');'">
+    New </a>
+
+<div id="openModal" class="modalDialog" title="Form Hasil">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+
+        <form action="#" th:action="@{/intervensi/intervensiForm}" th:object="${mstIntervensi}" method="post"
+              class="ajaxSingle" id="ajaxSg">
+            <div id="contentSingle">
+                <div>
+                    <label>Id Intervensi</label>
+                    <input type="text" maxlength="100" th:field="*{idIntervensi}" id="idIntervensi" readonly="true"/>
+
+                </div>
+                <div>
+                    <label>Nama Intervensi</label>
+                    <input type="text" maxlength="100" th:field="*{ketIntervensi}" id="ketIntervensi"/>
+                </div>
+            </div>
+            <div>
+                <input type="button"
+                       onclick="doAjaxPost(this, '#tblSingle');"
+                       value="save"/>
+                <input type="button"
+                       onclick="doAjaxLoad( '.ajaxSingle' , 'clear',  '#contentSingle' );"
+                       value="new"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div id="tblSingle">
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Intervensi</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="mstIntervensi, rowStat:${listIntervensi}">
+            <td th:text="${rowStat.count}"/>
+            <td th:text="${mstIntervensi.ketIntervensi}"/>
+            <td><a href="#openModal"
+                       th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + ${mstIntervensi.idIntervensi} + '\', \'' + '#contentSingle' + '\');'"
+                       >edit</a></td>
+            <td><input type="button"
+                       th:onclick="'doAjaxDel(\'' + '.ajaxSingle' + '\', \'' + ${mstIntervensi.idIntervensi} + '\', \'' + '#tblSingle' + '\');'"
+                       value="delete"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

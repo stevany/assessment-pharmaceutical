@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<div id="data">
+<p align="right" valign="bottom">
+    <a href="#" th:href="@{/pengkajian/pengkajianForm}" onclick="doGet(this,'#noreg','#dataUmum');return false;">new</a>
+</p>
+<form action="#" th:action="@{/data/dataForm}" th:object="${dataUmum}" method="post" class="ajaxData" id="dataUm">
+    <div id="contentHeader">
+        <div>
+            <label>NoReg</label>
+            <input type="text" maxlength="12" th:field="*{noreg}" id="noreg"/>
+            <span><a href="#" th:href="@{'/data/'}"
+                     onclick="doGet(this, '#noreg', '#reg');return false;">cari</a></span>
+            <span/>
+            <label>NoRM</label>
+            <input type="text" maxlength="11" th:field="*{norm}" id="norm"/>
+
+        </div>
+        <div id="reg">
+
+        </div>
+        <div>
+            <label>Status Kehamilan</label>
+            <input type="checkbox" th:field="*{hamil}"/>
+            <span/>
+            <select th:field="*{umrHamil}">
+                <option value="1"></option>
+                <option value="2">Trimester 1</option>
+                <option value="3">Trimester 2</option>
+                <option value="4">Trimester 3</option>
+            </select>
+        </div>
+        <div>
+            <label>Menyusui</label>
+            <input type="checkbox" th:field="*{menyusui}"/>
+            <span/>
+            <label>Rokok</label>
+            <input type="checkbox" th:field="*{rokok}"/>
+            <input type="text" th:field="*{ketRokok}"/>
+        </div>
+        <div>
+            <label>BB</label>
+            <input type="text" th:field="*{berat}" id="berat"/>
+            <span/>
+            <label>TB</label>
+            <input type="text" th:field="*{tinggi}" id="tinggi"/>
+            <input type="button" onclick="htgBT('#berat', '#tinggi');" text="hitung"/>
+            <span id="bmi"/>
+            <span id="bsa"/>
+
+        </div>
+
+        <div>
+            <label>Cafein</label>
+            <input type="checkbox" th:field="*{cafein}"/>
+            <input type="text" th:field="*{ketCafein}"/>
+        </div>
+        <div>
+            <label>Alkohol</label>
+            <input type="checkbox" th:field="*{alkohol}"/>
+            <input type="text" th:field="*{ketAlkohol}"/>
+        </div>
+
+        <div>
+            <label>Aktivitas</label>
+            <select th:field="*{aktivitas}">
+                <option value="1">Ringan</option>
+                <option value="2">Sedang</option>
+                <option value="3">Berat</option>
+            </select>
+            <input type="text" th:field="*{ketAktivitas}"/>
+        </div>
+        <div>
+            <label>Kontrasepsi</label>
+            <input type="checkbox" th:field="*{kontrasepsi}"/>
+            <input type="text" th:field="*{ketKontrasepsi}"/>
+
+        </div>
+        <div>
+            <label>Riwayat Penyakit</label>
+            <textarea rows="3" cols="0" placeholder="Riwayat Penyakit" th:field="*{riwayatPenyakit}"/>
+
+        </div>
+        <div>
+            <label>Riwayat Pengobatan</label>
+            <textarea rows="3" cols="0" placeholder="Riwayat Pengobatan" th:field="*{riwayatPengobatan}"/>
+        </div>
+        <div>
+            <label>Diagnosis Sementara</label>
+            <textarea rows="3" cols="0" placeholder="Diagnosis Sementara" th:field="*{diagnosisSementara}"/>
+        </div>
+        <div>
+            <label>Diagnosis Akhir</label>
+            <textarea rows="3" cols="0" placeholder="Diagnosis Akhir" th:field="*{diagnosisAkhir}"/>
+        </div>
+    </div>
+    <div>
+        <input type="button"
+               onclick="doAjaxPost(this ,' ' )"
+               value="save" name="createHdr"/>
+        <input type="button"
+              onclick="doAjaxLoad('#dataUm' , 'clear' , '#data')"
+               value="new"/>
+    </div>
+
+
+</form>
+<div class="tabsData">
+<!--<ul class="tabDetail">-->
+<!--<li id="tab1"><a href="#tab1" id="tabRiwayatAlergi">Riwayat Alergi</a>-->
+<input type="radio" name="tabsData1" id="tabRiwayatAlergi" class="tab1" checked="checked"/>
+<label for="tabRiwayatAlergi">RiwayatAlergi</label>
+<input type="radio" name="tabsData1" id="tabEfekSampingObat" class="tab2" checked="checked"/>
+<label for="tabEfekSampingObat">Efek Samping Obat</label>
+<input type="radio" name="tabsData1" id="tabObat" class="tab3" checked="checked"/>
+<label for="tabObat">Obat</label>
+<input type="radio" name="tabsData1" id="tabHasil" class="tab4" checked="checked"/>
+<label for="tabHasil">Hasil</label>
+
+    <div class="tab1">
+        <form action="#" th:action="@{/data/dataForm}" th:object="${dataRiwayatAlergi}" method="post"
+              class="ajaxDetail" id="dataRa">
+            <div id="contentRiwayatAlergi">
+                <label>Id Riwayat Alergi</label>
+                <input type="text" th:field="*{idRwtAlergi}" readonly="true" id="raId"/>
+                <span/>
+                <a href="#openModal"
+                   onclick="doSearch('#raHref', '#raNmObat', '#item')">Nama Obat</a>
+
+                <a th:href="@{/data/item}" id="raHref"/>
+
+                <span id="raObat">
+                <input type="text" th:field="*{nmObat}" id="raNmObat"/>
+                <span/>
+                <label>Kode Obat</label>
+                <input type="text" th:field="*{kdObat}" id="raKdObat"/>
+                </span>
+                <span/>
+                <label>Reaksi Alergi</label>
+                <input type="text" th:field="*{reaksiAlergi}" id="raRa"/>
+                <span/>
+                <label>Tanggal Kejadian</label>
+                <input type="text" th:field="*{tglKejadian}" id="raTglKejadian"/>
+            </div>
+            <div>
+                <input type="button"
+                       onclick="doAjaxPost(this, '#tblRiwayatAlergi');"
+                       value="save" name="createDtl"/>
+                <input type="button"
+                       th:onclick="'doAjaxLoad(\'' + '#dataRa' + '\', \'' + 'clear' + '\', \'' + '#contentRiwayatAlergi' + '\');'"
+                       value="new"/>
+            </div>
+        </form>
+        <div id="tblRiwayatAlergi">
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Obat</th>
+                    <th>Nama Obat</th>
+                    <th>Reaksi Alergi</th>
+                    <th>Tanggal Kejadian</th>
+                    <th>Updater</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each="dataRiwayatAlergi, rowStat:${listRiwayatAlergi}">
+                    <td th:text="${rowStat.count}"/>
+                    <td th:text="${dataRiwayatAlergi.kdObat}"/>
+                    <td th:text="${dataRiwayatAlergi.nmObat}"/>
+                    <td th:text="${dataRiwayatAlergi.reaksiAlergi}"/>
+                    <td th:text="${dataRiwayatAlergi.tglKejadian}"/>
+                    <td th:text="${dataRiwayatAlergi.tglUpdate} + ' ' + ${dataRiwayatAlergi.usrUpdate}"/>
+                    <td><input type="button"
+                               th:onclick="'doAjaxLoad(\'' + '#dataRa' + '\', \'' + ${dataRiwayatAlergi.idRwtAlergi} + '\', \'' + '#contentRiwayatAlergi' + '\');'"
+                               value="edit"/></td>
+                    <td><input type="button"
+                               th:onclick="'doAjaxDel(\'' + '#dataRa' + '\', \'' +  ${dataRiwayatAlergi.idRwtAlergi} + '\', \'' + '#tblRiwayatAlergi' + '\');'"
+                               value="delete"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="tab2">
+        <form action="#" th:action="@{/data/dataForm}" th:object="${dataEfekSampingObat}" method="post"
+              class="ajaxDetail" id="dataEs">
+            <div id="contentEfekSamping">
+                <label>Id Efek Samping</label>
+                <input type="text" th:field="*{idEfeksamping}" readonly="true" id="esId"/>
+                <span/>
+                <a href="#openModal"
+                   onclick="doSearch('#esHref', '#esNmObat', '#item')">Nama Obat</a>
+
+                <a th:href="@{/data/item}" id="esHref"/>
+                <input type="text" th:field="*{nmObat}" id="esNmObat"/>
+                <span/>
+                <label>Kode Obat</label>
+                <input type="text" th:field="*{kdObat}" id="esKdObat"/>
+                <span/>
+                <label>Reaksi Alergi</label>
+                <input type="text" th:field="*{reaksiAlergi}" id="esRA"/>
+                <span/>
+                <label>Tanggal Kejadian</label>
+                <input type="text" th:field="*{tglKejadian}" id="esTglKejadian"/>
+                </div>
+                <div>
+                <input type="button"
+                       onclick="doAjaxPost(this, '#tblEfekSamping');"
+                       value="save" name="createDtl"/>
+                <input type="button"
+                       th:onclick="'doAjaxLoad(\'' + '#dataEs' + '\', \'' + 'clear' + '\', \'' + '#contentEfekSamping' + '\' );'"
+                       value="new"/>
+            </div>
+        </form>
+        <div id="tblEfekSamping">
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Obat</th>
+                    <th>Nama Obat</th>
+                    <th>Reaksi Alergi</th>
+                    <th>Tanggal Kejadian</th>
+                    <th>Updater</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each="dataEfekSampingObat, rowStat:${listEfekSampingObat}">
+                    <td th:text="${rowStat.count}"/>
+                    <td th:text="${dataEfekSampingObat.kdObat}"/>
+                    <td th:text="${dataEfekSampingObat.nmObat}"/>
+                    <td th:text="${dataEfekSampingObat.reaksiAlergi}"/>
+                    <td th:text="${dataEfekSampingObat.tglKejadian}"/>
+                    <td th:text="${dataEfekSampingObat.tglUpdate} + ' ' + ${dataEfekSampingObat.usrUpdate}"/>
+                    <td><input type="button"
+                               th:onclick="'doAjaxLoad(\'' + '#dataEs' + '\', \'' + ${dataEfekSampingObat.idEfeksamping} + '\', \'' + '#contentEfekSamping' + '\');'"
+                               value="edit"/></td>
+                    <td><input type="button"
+                               th:onclick="'doAjaxDel(\'' + '#dataEs' + '\', \'' +  ${dataEfekSampingObat.idEfeksamping} + '\', \'' + '#tblEfekSamping' + '\');'"
+                               value="delete"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <div class="tab3">
+        <form action="#" th:action="@{/data/dataForm}" th:object="${dataObat}" method="post" class="ajaxDetail"
+              id="dataOb">
+            <div id="contentObat">
+                <label>Id Obat</label>
+                <input type="text" th:field="*{idObat}" readonly="true" id="obId"/>
+                <span/>
+                <a href="#openModal"
+                   onclick="doSearch('#obHref', '#obNmObat', '#item')">Nama Obat</a>
+
+                <a th:href="@{/data/item}" id="obHref"/>
+                <input type="text" th:field="*{nmObat}" id="obNmObat"/>
+                <span/>
+                <label>Kode Obat</label>
+                <input type="text" th:field="*{kdObat}" id="obKdObat"/>
+                <span/>
+                <label>Aturan Pakai</label>
+                <input type="text" th:field="*{aturanPakai}" id="obAturanPakai"/>
+                <span/>
+                <label>Tanggal Mulai</label>
+                <input type="text" th:field="*{tglMulai}" id="obTglMulai"/>
+                <span/>
+                <label>Tanggal Selesai</label>
+                <input type="text" th:field="*{tglSelesai}" id="obTglSelesai"/>
+            </div>
+            <div>
+                <input type="button"
+                       onclick="doAjaxPost(this, '#tblObat' );"
+                       value="save" name="createDtl"/>
+                <input type="button"
+                       th:onclick="'doAjaxLoad(\'' + '#dataOb' + '\', \'' + 'clear' + '\', \'' + '#contentObat' + '\');'"
+                       value="new"/>
+            </div>
+        </form>
+        <div id="tblObat">
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Obat</th>
+                    <th>Nama Obat</th>
+                    <th>Aturan Pakai</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Updater</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each="dataObat, rowStat:${listObat}">
+                    <td th:text="${rowStat.count}"/>
+                    <td th:text="${dataObat.kdObat}"/>
+                    <td th:text="${dataObat.nmObat}"/>
+                    <td th:text="${dataObat.aturanPakai}"/>
+                    <td th:text="${dataObat.tglMulai}"/>
+                    <td th:text="${dataObat.tglSelesai}"/>
+                    <td th:text="${dataObat.tglUpdate} + ' ' + ${dataObat.usrUpdate}"/>
+                    <td><input type="button"
+                               th:onclick="'doAjaxLoad(\'' + '#dataOb' + '\', \'' + ${dataObat.idObat} + '\', \'' + '#contentObat' + '\');'"
+                               value="edit"/></td>
+                    <td><input type="button"
+                               th:onclick="'doAjaxDel(\'' + '#dataOb' + '\', \'' +  ${dataObat.idObat} + '\', \'' + '#tblObat' + '\');'"
+                               value="delete"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <div class="tab4">
+        <form action="#" th:action="@{/data/dataForm}" th:object="${dataHasil}" method="post" class="ajaxDetail"
+              id="dataHs">
+            <div id="contentHasil">
+                <label>Id Hasil</label>
+                <input type="text" th:field="*{idHasil}" readonly="true" id="hsId"/>
+                <label>Hasil</label>
+                <select th:field="*{kdHasil}" id="hsHasil">
+                    <option th:each="hsl : ${allhasil}" th:value="${hsl.idHasil}" th:text="${hsl.ketHasil}"/>
+                </select>
+                <span/>
+                <label>Keterangan</label>
+                <textarea rows="3" cols="0" placeholder="Keterangan Hasil" th:field="*{keterangan}" id="hsKeterangan"/>
+            </div>
+            <div>
+                <input type="button"
+                       onclick="doAjaxPost(this, '#tblHasil');"
+                       value="save" name="createDtl"/>
+                <input type="button"
+                       th:onclick="'doAjaxLoad(\'' + '#dataHs' + '\', \'' + 'clear' + '\', \'' + '#contentHasil' + '\' );'"
+                       value="new"/>
+            </div>
+        </form>
+        <div id="tblHasil">
+            <table>
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Hasil</th>
+                    <th>Keterangan</th>
+                    <th>Updater</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr th:each="dataHasil, rowStat:${listHasil}">
+                    <td th:text="${rowStat.count}"/>
+                    <td th:text="${dataHasil.idHasil}"/>
+                    <td th:text="${dataHasil.kdHasil.ketHasil}"/>
+                    <td th:text="${dataHasil.keterangan}"/>
+                    <td th:text="${dataHasil.tglUpdate} + ' ' + ${dataHasil.usrUpdate}"/>
+                    <td><input type="button"
+                               th:onclick="'doAjaxLoad(\'' + '#dataHs' + '\', \'' + ${dataHasil.idHasil} + '\', \'' + '#contentHasil' + '\');'"
+                               value="edit"/></td>
+                    <td><input type="button"
+                               th:onclick="'doAjaxDel(\'' + '#dataHs' + '\', \'' +  ${dataHasil.idHasil} + '\', \'' + '#tblHasil' + '\');'"
+                               value="delete"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<div id="openModal" class="modalDialog" title="Item">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+
+        <div id="item">
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

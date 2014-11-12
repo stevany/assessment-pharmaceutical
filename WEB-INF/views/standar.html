@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <link rel="stylesheet" href="./resources/css/standar.css" th:href="@{/resources/css/standar.css}" media="all"
+          type="text/css"/>
+    <!--<link rel="stylesheet" href="./resources/jquery-ui-1.10.3.custom/css/le-frog/jquery-ui-1.10.3.custom.css" th:href="@{/resources/jquery-ui-1.10.3.custom/css/le-frog/jquery-ui-1.10.3.custom.css}"/>-->
+    <script language="JavaScript" type="text/javascript"
+            src="./resources/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+    <!--<script language="JavaScript" type="text/javascript" src="./resources/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>-->
+    <script language="JavaScript" type="text/javascript" src="./resources/js/standar.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./resources/js/menu.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./resources/js/date.format.js"></script>
+    <script type="text/javascript">
+        droplinemenu.buildmenu("droplinetabs1")
+    </script>
+</head>
+<body>
+
+<div id="header">
+    <div id="droplinetabs1" class="droplinetabs">
+        <ul>
+            <li><a href="#" th:href="@{'/hello'}" class="home"><span>Home</span></a></li>
+            <li><a href="#"><span>Master</span></a>
+                <ul>
+                    <li><a href="#" th:href="@{'/user/userForm'}" class="none">User</a></li>
+                    <li><a href="#" th:href="@{'/drp/drpForm'}" class="none">DRP</a>
+
+                        <ul>
+                            <li><a href="#">Water Sports 1</a></li>
+                            <li><a href="#">Water Sports 1</a></li>
+                            <li><a href="#">Water Sports 1</a></li>
+                            <li><a href="#">Water Sports 1</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Activities 4</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><span>Login</span></a>
+                <ul>
+                    <li><a href="/login" th:href="@{'/login'}" class="home">Login</a></li>
+
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<div id="menu">
+    <ul id="accordion-menu">
+        <li>
+            <div>MENU</div>
+            <ul>
+                <li><a href="#" th:href="@{'/hello'}" class="home">Hello</a></li>
+                <li><a href="#" th:href="@{'/login'}" class="none">Login</a></li>
+
+            </ul>
+        </li>
+
+        <li>
+            <div>MASTER</div>
+            <ul>
+                <li><a href="#" th:href="@{'/assessment/assessmentForm'}" class="none">Assessment</a></li>
+                <li><a href="#" th:href="@{'/drp/tab'}" class="none">DRP</a></li>
+                <li><a href="#" th:href="@{'hasil/hasilForm'}" class="none">Hasil</a></li>
+                <li><a href="#" th:href="@{'intervensi/intervensiForm'}" class="none">Intervensi</a></li>
+                <li><a href="#" th:href="@{'jnskonseling/jnsKonselingForm'}" class="none">Jenis Konseling</a></li>
+                <li><a href="#" th:href="@{'/materi/materiForm'}" class="none">Materi</a></li>
+                <li><a href="#" th:href="@{'/penerima/penerimaForm'}" class="none">Penerima</a></li>
+                <li><a href="#" th:href="@{'/user/userForm'}" class="none">User</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>Transaksi</div>
+            <ul>
+                <li><a href="#" th:href="@{'/data/dataForm'}" class="none">Data Umum</a></li>
+            </ul>
+        </li>
+        <li>
+            <div>REPORT</div>
+            <ul>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<div id="seperator"></div>
+
+<div id="content">
+    <div tiles:include="body" id="full">
+    </div>
+</div>
+<div id="footer">
+
+</div>
+</body>
+</html>

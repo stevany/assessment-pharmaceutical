@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<div id="peng">
+    <form action="#" th:action="@{/pengkajian/pengkajianForm}" th:object="${pengHdr}" method="post" class="ajaxHeader"
+          id="pengHd">
+        <div id="contentHeader">
+            <div>
+                <label>No Pengkajian</label>
+                <input type="text" th:field="*{noPengkajian}" id="noPengkajian"/>
+                <span/>
+                <label>NoReg</label>
+                <input type="text" th:field="*{dataUmum}" id="dataUmum"/>
+                <span/>
+                <label>Tanggal</label>
+                <input type="text" th:field="*{tgl}" id="tgl"/>
+            </div>
+            <input type="button" onclick="doAjaxPost(this,'#klGrupObat')" value="save" name="createHdr"/>
+            <input type="button" onclick="doAjaxLoad('#pengHd','clear','#peng')" value="new"/>
+        </div>
+
+    </form>
+    <div class="tabsData">
+        <ul class="tabDetail">
+            <li id="tab1"><a href="#tab1" id="tabDtlSyarat">Persyaratan Administrasi</a>
+
+                <div>
+                    <form action="#" th:action="@{/pengkajian/pengkajianForm}" th:object="${pengDtlSyarat}"
+                          method="post" class="ajaxDetail" id="pengSy">
+                        <div id="contentDtlSyarat">
+                            <fieldset>
+                                <legend>PERSYARATAN ADMINISTRASI</legend>
+
+                                <div>
+                                    <label>Id Syarat </label>
+                                    <input type="text" th:field="*{idDtlSyarat}" readonly="true" id="syId"/>
+                                    <span/>
+                                </div>
+                                <div>
+                                    <label>Nama Pasien</label>
+                                    <input type="checkbox" th:field="*{chkNmPasien}"/>
+                                    <input type="text" th:field="*{ketChkNmPasien}"/>
+                                </div>
+                                <div>
+                                    <label>Tanggal Lahir/Umur Pasien</label>
+                                    <input type="checkbox" th:field="*{chkTglLhrPasien}"/>
+                                    <input type="text" th:field="*{ketChkTglLhrPasien}"/>
+                                </div>
+                                <div>
+                                    <label>Jenis Kelamin Pasien</label>
+                                    <input type="checkbox" th:field="*{chkJkPasien}"/>
+                                    <input type="text" th:field="*{ketChkJkPasien}"/>
+                                </div>
+                                <div>
+                                    <label>Berat Badan Pasien</label>
+                                    <input type="checkbox" th:field="*{chkBbPasien}"/>
+                                    <input type="text" th:field="*{ketChkBbPasien}"/>
+                                </div>
+                                <div>
+                                    <label>Nama Dokter</label>
+                                    <input type="checkbox" th:field="*{chkNmDokter}"/>
+                                    <input type="text" th:field="*{ketChkNmDokter}"/>
+                                </div>
+                                <div>
+                                    <label>Paraf Dokter</label>
+                                    <input type="checkbox" th:field="*{chkPrfDokter}"/>
+                                    <input type="text" th:field="*{ketChkPrfDokter}"/>
+                                </div>
+                                <div>
+                                    <label>Tanggal Resep</label>
+                                    <input type="checkbox" th:field="*{chkTglResep}"/>
+                                    <input type="text" th:field="*{ketChkTglResep}"/>
+                                </div>
+                                <div>
+                                    <label>Ruangan/Unit Asal Resep</label>
+                                    <input type="checkbox" th:field="*{chkRuangUnitAsalResep}"/>
+                                    <input type="text" th:field="*{ketChkRuangUnitAsalResep}"/>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>PERSYARATAN FARMASETIK</legend>
+                                <div>
+                                    <label>Bentuk Obat</label>
+                                    <input type="checkbox" th:field="*{chkBtkObat}"/>
+                                    <input type="text" th:field="*{ketChkBtkObat}"/>
+                                </div>
+                                <div>
+                                    <label>Kekuatan Sediaan</label>
+                                    <input type="checkbox" th:field="*{chkKekuatanSediaan}"/>
+                                    <input type="text" th:field="*{ketChkKekuatanSediaan}"/>
+                                </div>
+                                <div>
+                                    <label>Dosis Obat</label>
+                                    <input type="checkbox" th:field="*{chkDosisObat}"/>
+                                    <input type="text" th:field="*{ketChkDosisObat}"/>
+                                </div>
+                                <div>
+                                    <label>Aturan Penggunaan</label>
+                                    <input type="checkbox" th:field="*{chkAturanPenggunaan}"/>
+                                    <input type="text" th:field="*{ketChkAturanPenggunaan}"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <input type="button"
+                                   onclick="doAjaxPost(this, '');"
+                                   value="save" name="createDtl"/>
+                            <input type="button"
+                                   th:onclick="'doAjaxLoad(\'' + '#pengSy' + '\', \'' + 'clear' + '\', \'' + '#contentDtlSyarat' + '\');'"
+                                   value="new"/>
+                        </div>
+                    </form>
+
+                </div>
+
+            </li>
+            <li id="tab2"><a href="#tab2" id="tabDtlKlinis">Persyaratan Klinis (Drug Related Problem) </a>
+
+                <div>
+                    <form action="#" th:action="@{/pengkajian/pengkajianForm}" th:object="${pengDtlKlinis}"
+                          method="post" class="ajaxDetail" id="pengKl">
+                        <div id="contentDtlKlinis">
+                            <div>
+                                <label>Id Syarat Klinis</label>
+                                <input type="text" th:field="*{idDtlKlinis}" readonly="true" id="klId"/>
+                                <span/>
+                                <a href="#openModal" onclick="doSearch('#drpHref', '','#item')">DRP</a>
+                                <a th:href="@{/pengkajian/item}" id="drpHref"/>
+                                <input type="text" id="klKetDrpDtl"/>
+                                <input type="text" th:field="*{drp}" id="klIdDrpDtl"/>
+                            </div>
+                            <div id="klGrupObat">
+                                <label>Nama Obat</label>
+                                <span th:each="obt:${allobt}">
+                                    <input type="checkbox" th:field="*{dataObat}" th:value="${obt.idObat}"
+                                       th:text="${obt.nmObat}" id="klNmObat"/>
+                                </span>
+                                <input type="text" th:field="*{keterangan1}" id="klKet1"/>
+                            </div>
+                            <div>
+                                <label>Intervensi</label>
+                                <select th:field="*{intervensi}" id="klIntervensi">
+                                    <option th:each="int :${allintervensi}" th:value="${int.idIntervensi}"
+                                            th:text="${int.ketIntervensi}"/>
+                                </select>
+                                <input type="text" th:field="*{keterangan2}" id="klKeterangan2"/>
+                            </div>
+                            <div>
+                                <label>Penerima</label>
+                                <select th:field="*{penerima}" id="klPenerima">
+                                    <option th:each="pnr:${allpenerima}" th:value="${pnr.idPenerima}" th:text="${pnr.ketPenerima}"/>
+                                </select>
+                                <span/>
+                                <label>Respon</label>
+                                <input type="checkbox" th:field="*{respon}" id="klRespon"/>
+                            </div>
+                            <div>
+                                <label>TTK</label>
+                                <input type="checkbox" th:field="*{ttk}" id="klTtk"/>
+                                <span/>
+                                <label>Apoteker</label>
+                                <select th:field="*{apoteker}" id="klApoteker">
+                                    <option th:each="apt:${allapoteker}" th:value="${apt.id}"  th:text="${apt.username}"/>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="button"
+                                       onclick="doAjaxPost(this, '#tblDtlKlinis');"
+                                       value="save" name="createDtl"/>
+                                <input type="button"
+                                       th:onclick="'doAjaxLoad(\'' + '#pengKl' + '\', \'' + 'clear' + '\', \'' + '#contentDtlKlinis' + '\' );'"
+                                       value="new"/>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="tblDtlKlinis">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Assessment</th>
+                                <th>DRP</th>
+                                <th>Keterangan</th>
+                                <th>Intervensi</th>
+                                <th>Updater</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr th:each="pengDtlKlinis, rowStat:${listDtlKlinis}">
+                                <td th:text="${rowStat.count}"/>
+                                <td th:text="${pengDtlKlinis.drp.idDrpHeader.assessment.ketAssessment}"/>
+                                <td th:text="${pengDtlKlinis.drp.idDrpHeader.ketDrpHdr}"/>
+                                <td th:text="${pengDtlKlinis.drp.ketDrpDtl}"/>
+                                <td th:text="${pengDtlKlinis.intervensi.ketIntervensi}"/>
+                                <td th:text="${pengDtlKlinis.tglUpdate} + ' ' + ${pengDtlKlinis.usrUpdate}"/>
+                                <td><input type="button"
+                                           th:onclick="'doAjaxLoad(\'' + '#pengKl' + '\', \'' + ${pengDtlKlinis.idDtlKlinis} + '\', \'' + '#contentDtlKlinis' + '\');'"
+                                           value="edit"/></td>
+                                <td><input type="button"
+                                           th:onclick="'doAjaxDel(\'' + '#pengKl' + '\', \'' +  ${pengDtlKlinis.idDtlKlinis} + '\', \'' + '#tblDtlKlinis' + '\');'"
+                                           value="delete"/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </li>
+            <li id="tab3"><a href="#tab3" id="tabDtlKonseling">Konseling</a>
+            <div>
+                <form action="#" th:action="@{/pengkajian/pengkajianForm}" th:object="${pengDtlKonseling}" method="post" class="ajaxDetail" id="pengKs">
+                    <div id="contentDtlKonseling">
+                        <div>
+                            <label>Id Konseling</label>
+                            <input type="text" th:field="*{idDtlKonseling}" readonly="true" id="ksId"/>
+                            <span/>
+                            <label>Konseling</label>
+                            <input type="checkbox" th:field="*{konseling}" id="ksKonseling"/>
+                        </div>
+                        <fieldset>
+                            <legend>Rincian Konseling</legend>
+                            <div>
+                                <label>Tanggal</label>
+                                <input type="text" th:field="*{tgl}" id="ksTgl"/>
+                                <span/>
+                                <label>Jenis Konseling</label>
+                                <select th:field="*{jnsKonseling}"  id="ksJnsKonseling">
+                                    <option th:each="kon:${allkonseling}" th:value="${kon.idJnsKonseling}" th:text="${kon.ketJnsKonseling}"/>
+                                </select>
+
+                            </div>
+                            <div>
+                                <label>Penerima Konseling</label>
+                                <select th:field="*{penerima}" id="ksPenerima">
+                                    <option th:each="pnr:${allpenerima}" th:value="${pnr.idPenerima}" th:text="${pnr.ketPenerima}"/>
+                                </select>
+                                <span/>
+                                <label>Informasi Inti</label>
+                                <input type="text" th:field="*{informasi}" id="ksInformasi"/>
+                            </div>
+                            <div>
+                                <label>Materi</label>
+                                <select th:field="*{materi}" id="ksMateri">
+                                    <option th:each="mtr:${allmateri}" th:value="${mtr.idMateri}" th:text="${mtr.ketMateri}" />
+                                </select>
+                                <span/>
+                                <label>Pemberi Konseling</label>
+                                <input type="text" th:field="*{pemberi}" id="ksPemberi"/>
+                            </div>
+                        </fieldset>
+
+                        </div>
+                    <div>
+                        <input type="button"
+                               onclick="doAjaxPost(this, '');"
+                               value="save" name="createDtl"/>
+                        <input type="button"
+                               th:onclick="'doAjaxLoad(\'' + '#pengKs' + '\', \'' + 'clear' + '\', \'' + '#contentDtlKonseling' + '\');'"
+                               value="new"/>
+                    </div>
+                </form>
+            </div>
+
+           </li>
+        </ul>
+    </div>
+    <div id="openModal" class="modalDialog" title="Item">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+
+            <div id="item">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

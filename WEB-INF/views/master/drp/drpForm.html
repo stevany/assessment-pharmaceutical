@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+</head>
+<body tiles:fragment="cont">
+<div id="drp">
+<form action="#" th:action="@{/drp/drpForm}" th:object="${mstDrpHdr}" method="post" class="ajaxHeader" id="ajaxHd">
+    <div id="contentHeader">
+        <div>
+            <label>Id Drp</label>
+            <input type="text" maxlength="100" th:field="*{idDrpHdr}" id="idDrpHdr" readonly="true"/>
+        </div>
+        <div>
+            <label>Nama Drp</label>
+            <input type="text" maxlength="100" th:field="*{ketDrpHdr}" id="ketDrpHdr"/>
+        </div>
+        <div>
+            <label>Assessment</label>
+            <select th:field="*{assessment}">
+                <option th:each="a : ${allAssess}" th:value="${a.ketAssessment}" th:text="${a.ketAssessment}"/>
+            </select>
+        </div>
+    </div>
+    <div>
+        <input type="button" onclick="doAjaxPost(this, '#tblHeader');"
+               value="save" name="createHdr"/>
+        <input type="button" th:onclick="'doAjaxLoad(\'' + '#ajaxHd' + '\', \'' + 'clear' + '\', \'' + '#drp' + '\');'" value="new"/>
+    </div>
+</form>
+<a href="#openModal"
+   th:onclick="'doAjaxLoad(\'' + '.ajaxDetail' + '\', \'' + 'clear' + '\', \'' + '#contentDetail' + '\' , \'' + '#idDrpHdr' + '\');'">new</a>
+
+<div id="openModal" class="modalDialog" title="Form Drp Detail">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+
+        <form action="#" th:action="@{/drp/drpForm}" th:object="${mstDrpDtl}" method="post" class="ajaxDetail" id="ajaxDt">
+            <div id="contentDetail">
+                <div>
+                    <label>Id Drp</label>
+                    <input type="text" maxlength="100" th:field="*{idDrpDtl}" id="idDrpDtl" readonly="true"/>
+                </div>
+                <div>
+                    <label>Nama Drp</label>
+                    <input type="text" maxlength="100" th:field="*{ketDrpDtl}" id="ketDrpDtl"/>
+                </div>
+            </div>
+            <div>
+                <input type="button" onclick="doAjaxPost(this,'#tblDetail');"
+                       value="save" name="createDtl"/>
+                <input type="button" onclick="doAjaxLoad( '#ajaxDt' , 'clear' , '#contentDetail'  );" value="new"/>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="tblDetail">
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mstDrpDtl, rowStat:${listDetail}">
+            <td th:text="${rowStat.count}"/>
+            <td th:text="${mstDrpDtl.ketDrpDtl}"/>
+            <td><a href="#openModal"
+                   th:onclick="'doAjaxLoad(\'' + '#ajaxDt' + '\', \'' + ${mstDrpDtl.idDrpDtl} + '\', \'' + '#contentDetail' + '\');'"
+                    >edit</a></td>
+            <td><input type="button"
+                       th:onclick="'doAjaxDel(\'' + '#ajaxDt' + '\', \'' +  ${mstDrpDtl.idDrpDtl} + '\', \'' + '#tblDetail' + '\');'"
+                       value="delete"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    </div>
+</body>
+</html>

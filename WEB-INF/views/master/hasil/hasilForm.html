@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://wwww.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <title></title>
+</head>
+<body tiles:fragment="cont">
+<a href="#openModal" th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + 'clear' + '\', \'' + '#contentSingle' + '\', \'' + '' + '\');'">new</a>
+<div id="openModal" class="modalDialog" title="Form Hasil">
+<div>
+    <a href="#close" title="Close" class="close">X</a>
+<form action="#" th:action="@{/hasil/hasilForm}" th:object="${mstHasil}" method="post" class="ajaxSingle" id="ajaxSg">
+    <div id="contentSingle">
+        <div>
+            <label>Id Hasil</label>
+            <input type="text" maxlength="100" th:field="*{idHasil}" id="idHasil" readonly="true"/>
+        </div>
+        <div>
+            <label>Nama Hasil</label>
+            <input type="text" maxlength="100" th:field="*{ketHasil}" id="ketHasil"/>
+        </div>
+    </div>
+    <div>
+        <input type="button"
+               onclick="doAjaxPost(this, '#tblSingle');"
+               value="save"/>
+        <input type="button"
+               th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + 'clear' + '\', \'' + '#contentSingle' + '\');'"
+               value="new"/>
+
+    </div>
+</form>
+</div>
+</div>
+<div id="tblSingle">
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Hasil</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mstHasil, rowStat:${listHasil}">
+            <td th:text="${rowStat.count}"/>
+            <td th:text="${mstHasil.ketHasil}"/>
+            <td><a href="#openModal"
+                       th:onclick="'doAjaxLoad(\'' + '.ajaxSingle' + '\', \'' + ${mstHasil.idHasil} + '\', \'' + '#contentSingle' + '\' );'"
+                       >edit</a></td>
+            <td><input type="button"
+                       th:onclick="'doAjaxDel(\'' + '.ajaxSingle' + '\', \'' + ${mstHasil.idHasil} + '\', \'' + '#tblSingle' + '\');'"
+                       value="delete"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
